@@ -11,6 +11,8 @@ import NotFound from '../NotFound'
 
 import Navbar from '../../Components/Navbar'
 
+import Layout from '../../Components/Layout'
+
 const AppRoutes = () => {
   const routes = useRoutes([
     { path: '/', element: <Home /> },
@@ -27,7 +29,9 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <AppRoutes />
+      <Layout>
+        <AppRoutes />
+      </Layout>
     </BrowserRouter>
   )
 }

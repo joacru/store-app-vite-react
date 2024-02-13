@@ -4,9 +4,9 @@ function Navbar() {
     const activeStyle = 'underline font-semibold underline-offset-4'
     
     return (
-        <nav className="flex justify-between items-center fixed z-10 w-full py-4 px-8 text-sm">
-            <ul className="flex items-center gap-3">
-                <li className="font-bold text-lg">
+        <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm'>
+            <ul className='flex items-center gap-3'>
+                <li className='font-bold text-lg'>
                     <NavLink to='/'>
                         CShop
                     </NavLink>
@@ -49,8 +49,8 @@ function Navbar() {
                 </li>
             </ul>
             
-            <ul className="flex items-center gap-3">
-                <li className="text-black/60">
+            <ul className='flex items-center gap-3'>
+                <li className='text-black/60'>
                     joacru@joacru.com
                 </li>
                 <li>
