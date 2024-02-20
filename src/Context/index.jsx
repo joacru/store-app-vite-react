@@ -22,12 +22,25 @@ export function ShoppingCartProvider({ children }){
         images: [],
     })
 
+    // Checkout Side Menu - Open & Close
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+    const openCheckoutSideMenu = () => {
+        closeProductDetail()
+        setIsCheckoutSideMenuOpen(true)
+    }
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+
+    // Shopping Cart - Products
+    const [cartProducts, setCartProducts] = useState([])
+
     return (
         <ShoppingCartContext.Provider value={
             {
                 counter, setCounter,
                 isProductDetailOpen, openProductDetail, closeProductDetail,
                 productToShow,
+                isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu,
+                cartProducts, setCartProducts,
             }
         }>
             { children }
