@@ -27,7 +27,7 @@ function CheckoutSideMenu() {
         closeCheckoutSideMenu()
 
         const orderToAdd = {
-            date: '21/02/2024',
+            date: new Date(),
             products: cartProducts,
             totalProducts: cartProducts.length,
             totalPrice: totalPrice(cartProducts),
