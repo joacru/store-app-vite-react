@@ -33,6 +33,9 @@ export function ShoppingCartProvider({ children }){
     // Shopping Cart - Products
     const [cartProducts, setCartProducts] = useState([])
 
+    // Shopping Cart - Order
+    const [order, setOrder] = useState([])
+
     return (
         <ShoppingCartContext.Provider value={
             {
@@ -41,6 +44,7 @@ export function ShoppingCartProvider({ children }){
                 productToShow,
                 isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu,
                 cartProducts, setCartProducts,
+                order, setOrder
             }
         }>
             { children }

@@ -11,9 +11,10 @@ function OrderCard({ id, title, imageUrl, price, handleDelete }) {
             </div>
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>${ price }</p>
-                <div className='cursor-pointer' onClick={() => handleDelete(id)}>
-                    <XMarkIcon className='w-4 h-4' />
-                </div>
+                {handleDelete?
+                    <div className='cursor-pointer' onClick={() => handleDelete(id)}>
+                        <XMarkIcon className='w-4 h-4' />
+                    </div> : ''}
             </div>
         </div>
     )
