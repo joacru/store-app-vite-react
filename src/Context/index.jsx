@@ -29,14 +29,12 @@ export function ShoppingCartProvider({ children }){
     const filterItemsByCategory = (items, value) => {
         return items.filter(item => item.category.name.toLowerCase() === value)
     }
-    useEffect(() => {
-        if(searchCategory) setFilteredItems(filterItemsByCategory(items, searchCategory))
-        else setFilteredItems(items)
-        if(searchValue) setFilteredItems(filterItems(filteredItems, searchValue))
+    useEffect(() => {        
+        let itemsToShow = [...items]
+        if(searchCategory) itemsToShow = filterItemsByCategory(itemsToShow, searchCategory)
+        if(searchValue) itemsToShow = filterItems(itemsToShow, searchValue)
+        setFilteredItems(itemsToShow)
     }, [items, searchValue, searchCategory])
-
-    // Shopping Cart - Counter
-    const [counter, setCounter] = useState(0)
 
     // Product Detail - Open & Close
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
@@ -75,7 +73,6 @@ export function ShoppingCartProvider({ children }){
                 categories,
                 filteredItems,
                 searchValue, setSearchValue,
-                counter, setCounter,
                 isProductDetailOpen, openProductDetail, closeProductDetail,
                 productToShow,
                 isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu,

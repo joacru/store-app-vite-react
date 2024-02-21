@@ -10,8 +10,9 @@ function Navbar() {
     const activeStyle = 'underline font-semibold underline-offset-4'
     
     const {
-        counter,
-        categories
+        cartProducts,
+        openCheckoutSideMenu,
+        categories,
     } = useContext(ShoppingCartContext)
 
     return (
@@ -49,7 +50,7 @@ function Navbar() {
                         My Orders
                     </NavLink>
                 </li>
-                <li>
+                {/*<li>
                     <NavLink to='/my-account'
                         className={({isActive}) => isActive ? activeStyle : undefined}>
                         My Account
@@ -60,10 +61,10 @@ function Navbar() {
                         className={({isActive}) => isActive ? activeStyle : undefined}>
                         Sign In
                     </NavLink>
-                </li>
-                <li className='flex items-center'>
+                </li>*/}
+                <li className='flex items-center cursor-pointer' onClick={() => openCheckoutSideMenu()}>
                     <ShoppingCartIcon className='h-4 w-4 text-black' />
-                    <div className='ms-1'>{ counter }</div>
+                    <div className='ms-1'>{ cartProducts.length }</div>
                 </li>
             </ul>
         </nav>

@@ -11,7 +11,7 @@ function Home() {
         filteredItems,
         setSearchCategory,
         categories,
-        searchValue,
+        searchValue, setSearchValue,
     } = useContext(ShoppingCartContext);
 
     let { category } = useParams() || ''
