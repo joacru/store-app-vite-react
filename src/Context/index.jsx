@@ -3,6 +3,14 @@ import { useState, createContext, useEffect } from 'react'
 export const ShoppingCartContext = createContext()
 
 export function ShoppingCartProvider({ children }){
+    // Categories
+    const [categories, setCategories] = useState([])
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/categories')
+            .then(response => response.json())
+            .then(data => setCategories(data))
+    }, [])
+
     // Items
     const [items, setItems] = useState([])
     useEffect(() => {
@@ -14,13 +22,18 @@ export function ShoppingCartProvider({ children }){
 
     // Items - Search
     const [searchValue, setSearchValue] = useState('')
+    const [searchCategory, setSearchCategory] = useState(null)
     const filterItems = (items, value) => {
         return items.filter(item => item.title.toLowerCase().includes(value.toLowerCase()))
     }
+    const filterItemsByCategory = (items, value) => {
+        return items.filter(item => item.category.name.toLowerCase() === value)
+    }
     useEffect(() => {
-        if(searchValue) setFilteredItems(filterItems(items, searchValue))
+        if(searchCategory) setFilteredItems(filterItemsByCategory(items, searchCategory))
         else setFilteredItems(items)
-    }, [items, searchValue])
+        if(searchValue) setFilteredItems(filterItems(filteredItems, searchValue))
+    }, [items, searchValue, searchCategory])
 
     // Shopping Cart - Counter
     const [counter, setCounter] = useState(0)
@@ -59,6 +72,7 @@ export function ShoppingCartProvider({ children }){
         <ShoppingCartContext.Provider value={
             {
                 items, setItems,
+                categories,
                 filteredItems,
                 searchValue, setSearchValue,
                 counter, setCounter,
@@ -67,6 +81,7 @@ export function ShoppingCartProvider({ children }){
                 isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu,
                 cartProducts, setCartProducts,
                 order, setOrder,
+                setSearchCategory,
             }
         }>
             { children }

@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useParams, Navigate } from 'react-router-dom'
 
 import { ShoppingCartContext } from '../../Context'
 
@@ -8,8 +9,22 @@ import ProductDetail from '../../Components/ProductDetail'
 function Home() {
     const {
         filteredItems,
-        searchValue, setSearchValue
+        setSearchCategory,
+        categories,
+        searchValue,
     } = useContext(ShoppingCartContext);
+
+    let { category } = useParams() || ''
+
+    if(category && !categories.some(element => element.name.toLowerCase() === category)){
+        return (
+            <Navigate to='/' />
+        )
+    }
+    
+    useEffect(() => {
+        setSearchCategory(category)
+    }, [category])
 
     return (
         <>
